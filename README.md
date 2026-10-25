@@ -6,15 +6,25 @@ A tiny Python shipping calculator with **12 real tests** and a GitHub Actions wo
 
 ## Latest selected snapshot
 
-![Latest selected Chopper test snapshot](https://raw.githubusercontent.com/cric2000/build-buddy-demo/badge-artifact/mascot.svg)
+<!-- buildbuddy:latest:start -->
+**Passing · 12 tests · 0 failures**
 
-This image records the selected scenario at the moment it was observed. It is not a continuously polled indicator of whether a GitHub runner is currently busy. The README text stays unchanged; Actions replaces the image on the `badge-artifact` branch.
+![Latest selected Chopper test snapshot](https://raw.githubusercontent.com/cric2000/build-buddy-demo/76005dc6a68222f14b0c72d60b78293d246df9cf/mascot.svg)
 
-## All five states, observed from tests
+[View this run](https://github.com/cric2000/build-buddy-demo/actions/runs/40239665227) · [Tested source](https://github.com/cric2000/build-buddy-demo/commit/df3b068fe0a50190f19dc1f1101c5aa2e26042fd) · [Published results](https://github.com/cric2000/build-buddy-demo/blob/76005dc6a68222f14b0c72d60b78293d246df9cf/results.json)
+<!-- buildbuddy:latest:end -->
 
+This image records the selected scenario at the moment it was observed. It is not a continuously polled indicator of whether a GitHub runner is currently busy. Actions publishes images to `badge-artifact` and updates the generated README blocks with immutable image URLs, the observed status, and a link to the test run. A new image URL for each publication prevents GitHub from reusing an older cached result.
+
+## All five states · demonstration gallery
+
+These examples intentionally include a failing run with two failed tests. The latest selected result is shown above.
+
+<!-- buildbuddy:gallery:start -->
 | Queued | Running | Passing | Failing | Unknown |
 | --- | --- | --- | --- | --- |
-| ![Queued Chopper](https://raw.githubusercontent.com/cric2000/build-buddy-demo/badge-artifact/queued.svg) | ![Running Chopper](https://raw.githubusercontent.com/cric2000/build-buddy-demo/badge-artifact/running.svg) | ![Passing Chopper](https://raw.githubusercontent.com/cric2000/build-buddy-demo/badge-artifact/passing.svg) | ![Failing Chopper](https://raw.githubusercontent.com/cric2000/build-buddy-demo/badge-artifact/failing.svg) | ![Unknown Chopper](https://raw.githubusercontent.com/cric2000/build-buddy-demo/badge-artifact/unknown.svg) |
+| ![Queued Chopper](https://raw.githubusercontent.com/cric2000/build-buddy-demo/76005dc6a68222f14b0c72d60b78293d246df9cf/queued.svg) | ![Running Chopper](https://raw.githubusercontent.com/cric2000/build-buddy-demo/76005dc6a68222f14b0c72d60b78293d246df9cf/running.svg) | ![Passing Chopper](https://raw.githubusercontent.com/cric2000/build-buddy-demo/76005dc6a68222f14b0c72d60b78293d246df9cf/passing.svg) | ![Failing Chopper](https://raw.githubusercontent.com/cric2000/build-buddy-demo/76005dc6a68222f14b0c72d60b78293d246df9cf/failing.svg) | ![Unknown Chopper](https://raw.githubusercontent.com/cric2000/build-buddy-demo/76005dc6a68222f14b0c72d60b78293d246df9cf/unknown.svg) |
+<!-- buildbuddy:gallery:end -->
 
 | Scenario | What actually happens |
 | --- | --- |
@@ -32,9 +42,9 @@ Queued, running, and unknown are lifecycle/availability states, not additional p
 1. Open **Actions → Chopper test demo → Run workflow** on `main` (requires permission to run workflows in this repository).
 2. Select `queued`, `running`, `passing`, `failing`, `unknown`, or `all`.
 3. Open the run to inspect actual assertions, the observed-state summary, and downloadable SVG/report artifacts.
-4. Return here after publication. GitHub's image cache may delay the refreshed artwork.
+4. Return here after publication. The generated status text and image URL update together after publication. Reload the page to see the new README commit.
 
-Visitors can inspect every run and fork the repository to run their own scenarios. A push to `main` automatically runs `all`. Pull requests verify the application and lifecycle tests but cannot publish images. Manual runs from other branches also cannot publish. Only the separate publication job receives repository write permission. Concurrent runs are serialized to avoid racing image updates. `badge-artifact` is reserved for generated images and results; source code remains on `main`.
+Visitors can inspect every run and fork the repository to run their own scenarios. A push to `main` automatically runs `all`. Pull requests verify the application and lifecycle tests but cannot publish images. Manual runs from other branches also cannot publish. Only the separate publication job receives repository write permission. Concurrent runs are serialized to avoid racing image updates. `badge-artifact` is reserved for generated images and results; source code remains on `main`. The publication job also commits only the generated README blocks on `main`; its repository token and `[skip ci]` commit message prevent recursive workflow runs.
 
 The published gallery keeps each state's latest snapshot. A single-state run updates the selected image and any states it observes; `all` refreshes all five. Infrastructure/API failures are reported as workflow errors and leave the last successfully published image in place, rather than labelling an unobserved result as passing.
 
@@ -49,7 +59,7 @@ python3 scripts/demo.py --scenario failing  # exits 1 after rendering actual fai
 python3 scripts/demo.py --scenario unknown
 ```
 
-The verification suite contains 12 shipping tests and 5 integration/report tests. Its intentional-regression check runs a child test process that is expected to fail; the parent assertion verifies the two failures and passes.
+The verification suite contains 12 shipping tests, 5 integration/report tests, and 3 README publication tests. Its intentional-regression check runs a child test process that is expected to fail; the parent assertion verifies the two failures and passes.
 
 Artwork and `results.json` are written to the ignored `site/` directory. By default, the demo requests SVGs from `https://build-buddy-kappa.vercel.app/v1/mascot.svg`, with status derived from observed process/report state. It uploads no source code, logs, or personal data to BuildBuddy.
 

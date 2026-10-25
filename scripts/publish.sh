@@ -32,3 +32,16 @@ if ! git -C "$BADGE_REPO" diff --cached --quiet; then
     commit -m "Publish Chopper demo snapshots [skip ci]"
   git -C "$BADGE_REPO" push origin HEAD:refs/heads/badge-artifact
 fi
+
+# Pin README URLs to the complete artifact commit so image caches cannot show an older run.
+artifact_sha=$(git -C "$BADGE_REPO" rev-parse HEAD)
+git fetch origin main
+git switch --detach origin/main
+python3 scripts/update_readme.py --artifact-sha "$artifact_sha" --results "$SVG_DIR/results.json"
+git add README.md
+if ! git diff --cached --quiet; then
+  git -c user.name='github-actions[bot]' \
+    -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+    commit -m "Update Chopper README result [skip ci]"
+  git push origin HEAD:refs/heads/main
+fi

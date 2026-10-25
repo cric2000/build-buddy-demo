@@ -67,7 +67,7 @@ jobs:
         with:
           name: chopper-snapshots
           path: ${{ runner.temp }}/chopper-snapshots
-      - name: Publish README images to badge-artifact
+      - name: Publish images and refresh the README result
         env:
           SVG_DIR: ${{ runner.temp }}/chopper-snapshots
           BADGE_REPO: ${{ runner.temp }}/badge-repo
