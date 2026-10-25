@@ -1,0 +1,77 @@
+name: Chopper test demo
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      scenario:
+        description: 'Choose a real test lifecycle/result snapshot (all refreshes the gallery)'
+        type: choice
+        default: all
+        options: [all, queued, running, passing, failing, unknown]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: chopper-demo-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Verify parcel rules and all five lifecycle states
+        run: python3 -m unittest discover -v
+
+  demonstrate:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch) && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    outputs:
+      outcome: ${{ steps.demo.outcome }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Run actual tests and request Chopper artwork
+        id: demo
+        continue-on-error: true
+        env:
+          SCENARIO: ${{ inputs.scenario || 'all' }}
+        run: python3 scripts/demo.py --scenario "$SCENARIO" --output-dir site
+      - name: Upload observed snapshots and test counts
+        uses: actions/upload-artifact@v4
+        with:
+          name: chopper-snapshots
+          path: site/
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    needs: demonstrate
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch) && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: chopper-snapshots
+          path: ${{ runner.temp }}/chopper-snapshots
+      - name: Publish README images to badge-artifact
+        env:
+          SVG_DIR: ${{ runner.temp }}/chopper-snapshots
+          BADGE_REPO: ${{ runner.temp }}/badge-repo
+        run: bash scripts/publish.sh
+      - name: Keep a failing test run red after publishing its mascot
+        if: needs.demonstrate.outputs.outcome != 'success'
+        run: exit 1
