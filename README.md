@@ -7,11 +7,11 @@ A tiny Python shipping calculator with **12 real tests** and a GitHub Actions wo
 ## Latest selected snapshot
 
 <!-- buildbuddy:latest:start -->
-**Passing · 12 tests · 0 failures**
+**Failing · 12 tests · 2 failures**
 
-![Latest selected Chopper test snapshot](https://raw.githubusercontent.com/cric2000/build-buddy-demo/97bf62f446c346a86757bf68fe9a11fc8bbdf25c/mascot.svg)
+![Latest selected Chopper test snapshot](https://raw.githubusercontent.com/cric2000/build-buddy-demo/3e0ef6e0baf0de17f7b8a750bb3e42095c5a91bb/mascot.svg)
 
-[View this run](https://github.com/cric2000/build-buddy-demo/actions/runs/40240050738) · [Tested source](https://github.com/cric2000/build-buddy-demo/commit/6a99525a5b083dc853f5316fdf9839f8ebad9cfb) · [Published results](https://github.com/cric2000/build-buddy-demo/blob/97bf62f446c346a86757bf68fe9a11fc8bbdf25c/results.json)
+[View this run](https://github.com/cric2000/build-buddy-demo/actions/runs/40240098114) · [Tested source](https://github.com/cric2000/build-buddy-demo/commit/a1f8661261082214f7b6641b28082d282adabfe8) · [Published results](https://github.com/cric2000/build-buddy-demo/blob/3e0ef6e0baf0de17f7b8a750bb3e42095c5a91bb/results.json)
 <!-- buildbuddy:latest:end -->
 
 This image records the selected scenario at the moment it was observed. It is not a continuously polled indicator of whether a GitHub runner is currently busy. Actions publishes images to `badge-artifact` and updates the generated README blocks with immutable image URLs, the observed status, and a link to the test run. A new image URL for each publication prevents GitHub from reusing an older cached result.
@@ -23,7 +23,7 @@ These examples intentionally include a failing run with two failed tests. The la
 <!-- buildbuddy:gallery:start -->
 | Queued | Running | Passing | Failing | Unknown |
 | --- | --- | --- | --- | --- |
-| ![Queued Chopper](https://raw.githubusercontent.com/cric2000/build-buddy-demo/97bf62f446c346a86757bf68fe9a11fc8bbdf25c/queued.svg) | ![Running Chopper](https://raw.githubusercontent.com/cric2000/build-buddy-demo/97bf62f446c346a86757bf68fe9a11fc8bbdf25c/running.svg) | ![Passing Chopper](https://raw.githubusercontent.com/cric2000/build-buddy-demo/97bf62f446c346a86757bf68fe9a11fc8bbdf25c/passing.svg) | ![Failing Chopper](https://raw.githubusercontent.com/cric2000/build-buddy-demo/97bf62f446c346a86757bf68fe9a11fc8bbdf25c/failing.svg) | ![Unknown Chopper](https://raw.githubusercontent.com/cric2000/build-buddy-demo/97bf62f446c346a86757bf68fe9a11fc8bbdf25c/unknown.svg) |
+| ![Queued Chopper](https://raw.githubusercontent.com/cric2000/build-buddy-demo/3e0ef6e0baf0de17f7b8a750bb3e42095c5a91bb/queued.svg) | ![Running Chopper](https://raw.githubusercontent.com/cric2000/build-buddy-demo/3e0ef6e0baf0de17f7b8a750bb3e42095c5a91bb/running.svg) | ![Passing Chopper](https://raw.githubusercontent.com/cric2000/build-buddy-demo/3e0ef6e0baf0de17f7b8a750bb3e42095c5a91bb/passing.svg) | ![Failing Chopper](https://raw.githubusercontent.com/cric2000/build-buddy-demo/3e0ef6e0baf0de17f7b8a750bb3e42095c5a91bb/failing.svg) | ![Unknown Chopper](https://raw.githubusercontent.com/cric2000/build-buddy-demo/3e0ef6e0baf0de17f7b8a750bb3e42095c5a91bb/unknown.svg) |
 <!-- buildbuddy:gallery:end -->
 
 | Scenario | What actually happens |
