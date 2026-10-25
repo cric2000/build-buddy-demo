@@ -1,11 +1,7 @@
 {
-  "scenario": "all",
-  "selected_status": "passing",
+  "scenario": "failing",
+  "selected_status": "failing",
   "snapshots": {
-    "unknown": {
-      "status": "unknown",
-      "test_report": null
-    },
     "queued": {
       "status": "queued",
       "test_report": null
@@ -13,14 +9,6 @@
     "running": {
       "status": "running",
       "test_report": null
-    },
-    "passing": {
-      "status": "passing",
-      "test_report": {
-        "tests_run": 12,
-        "failed_tests": 0,
-        "exit_code": 0
-      }
     },
     "failing": {
       "status": "failing",
