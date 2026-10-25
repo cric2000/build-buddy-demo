@@ -1,6 +1,6 @@
 {
-  "scenario": "failing",
-  "selected_status": "failing",
+  "scenario": "passing",
+  "selected_status": "passing",
   "snapshots": {
     "queued": {
       "status": "queued",
@@ -10,12 +10,12 @@
       "status": "running",
       "test_report": null
     },
-    "failing": {
-      "status": "failing",
+    "passing": {
+      "status": "passing",
       "test_report": {
         "tests_run": 12,
-        "failed_tests": 2,
-        "exit_code": 1
+        "failed_tests": 0,
+        "exit_code": 0
       }
     }
   }
